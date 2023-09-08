@@ -1,20 +1,23 @@
-const dateElement = document.getElementById('currentDate')
-const timeElement = document.getElementById('currentTime')
+const dayElement = document.getElementById("currentDay");
+const timeElement = document.getElementById("currentTime");
 
-function updateDateTime() {
-    const currentDate = new Date();
-    const currentHours = currentDate.getHours().toString().padStart(2, "0");
-    const currentMinutes = currentDate.getMinutes().toString().padStart(2, "0");
-    const currentSeconds = currentDate.getSeconds().toString().padStart(2, "0");
-    const currentTime = `${currentHours}:${currentMinutes}:${currentSeconds}`;
-    
-    // Update the HTML elements
-    dateElement.textContent = currentDate.toDateString();
-    timeElement.textContent = currentTime;
-  }
+function updateDayOfWeekAndTime() {
+  const currentDate = new Date();
 
-  // Call the function initially
-  updateDateTime();
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const currentDayOfWeek = daysOfWeek[currentDate.getDay()];
 
-  // Update the date and time every second
-  setInterval(updateDateTime, 1000);
+  const currentHours = currentDate.getHours().toString().padStart(2, "0");
+  const currentMinutes = currentDate.getMinutes().toString().padStart(2, "0");
+  const currentSeconds = currentDate.getSeconds().toString().padStart(2, "0");
+  const currentTimeMilliseconds = currentDate.getUTCMilliseconds(); // Get milliseconds part
+
+  const currentTime = `${currentHours}:${currentMinutes}:${currentSeconds}.${currentTimeMilliseconds}`; // Add milliseconds
+
+  dayElement.textContent = currentDayOfWeek;
+  timeElement.textContent = currentTime;
+}
+
+updateDayOfWeekAndTime();
+
+setInterval(updateDayOfWeekAndTime, 1000);
