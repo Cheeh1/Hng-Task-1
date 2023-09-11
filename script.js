@@ -7,17 +7,15 @@ function updateDayOfWeekAndTime() {
   const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const currentDayOfWeek = daysOfWeek[currentDate.getDay()];
 
-  const currentHours = currentDate.getHours().toString().padStart(2, "0");
-  const currentMinutes = currentDate.getMinutes().toString().padStart(2, "0");
-  const currentSeconds = currentDate.getSeconds().toString().padStart(2, "0");
-  const currentTimeMilliseconds = currentDate.getUTCMilliseconds(); // Get milliseconds part
-
-  const currentTime = `${currentHours}:${currentMinutes}:${currentSeconds}.${currentTimeMilliseconds}`; // Add milliseconds
+  const currentMilliseconds = new Date().getTime();
+  
 
   dayElement.textContent = currentDayOfWeek;
-  timeElement.textContent = currentTime;
+  timeElement.textContent = currentMilliseconds;
 }
 
 updateDayOfWeekAndTime();
 
-setInterval(updateDayOfWeekAndTime, 1000);
+setInterval(updateDayOfWeekAndTime, 1);
+
+
